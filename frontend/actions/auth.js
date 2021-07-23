@@ -28,8 +28,7 @@ export const signin = user => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(user)
-    })
-        .then(response => {
+    }).then(response => {
             return response.json();
         })
         .catch(err => console.log(err));

@@ -26,10 +26,15 @@ const SigninComponent = () => {
 
         signin(user).then(data => {
             if (data.error) {
-                setValues({ ...values, error: data.error, loading: false })
+                setValues({ ...values, loading: false, error: data.error })
             } else {
                 authenticate(data, () => {
-                    Router.push(`/`)
+                    if(isAuth && isAuth.role === 1) {
+                        Router.push(`/admin`)
+                    }
+                    else {
+                        Router.push(`/user`)
+                    }
                 })
             }
         })

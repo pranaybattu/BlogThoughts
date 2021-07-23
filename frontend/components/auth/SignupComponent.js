@@ -1,5 +1,5 @@
 import React,{ useState, Fragment } from 'react'
-import signup from '../../actions/auth'
+import {signup} from '../../actions/auth'
 
 const SignupComponent = () => {
 
