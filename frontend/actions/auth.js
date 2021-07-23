@@ -16,7 +16,7 @@ export const signup = (user) => {
         return response.json()
     })
     .catch(err => {
-        console.alert(err)
+        console.log(err)
     })
 }
 

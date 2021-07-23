@@ -9,7 +9,7 @@ const Private = ({children}) => {
             Router.push(`/signin`)
         }
 
-        else if(isAuth.role != 1) {
+        else if(isAuth().role !== 1) {
             Router.push(`/`)
         }
     }, [])
