@@ -15,6 +15,7 @@ exports.create = (req,res) => {
                 error: errorHandler(err)
             })
         }
+        console.table(req.profile)
         res.json(data)
     })
 

@@ -68,17 +68,25 @@ exports.signout = (req, res) => {
 }
 
 exports.requireSignin = (req, res, next) => {
-    jwt.verify(req.cookies['token'], process.env.JWT_SECRET, (err, decodedToken) => {
-        if(err) {
-            return res.status(400).json({
-                error: err
+
+        const authHeader = req.headers.authorization
+
+        if(authHeader) {
+
+            const token = authHeader.split(' ')[1]
+
+            jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
+                if(err) {
+                    return res.status(400).json({
+                        error: err
+                    })
+                }
+                else {
+                    req.user = decodedToken
+                    next()
+                }
             })
         }
-        else {
-            req.user = decodedToken
-            next()
-        }
-    })
 }
 
 
@@ -96,7 +104,7 @@ exports.authMiddleware = (req, res, next) => {
 }
 
 exports.adminMiddleware = (req, res, next) => {
-    console.table(req.user)
+    
     const adminUserId = req.user._id
     
     User.findById({ _id: adminUserId }).exec((err, user) => {
