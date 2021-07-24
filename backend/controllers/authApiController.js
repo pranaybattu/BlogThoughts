@@ -78,7 +78,7 @@ exports.requireSignin = (req, res, next) => {
             jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
                 if(err) {
                     return res.status(400).json({
-                        error: err
+                        error: "send again!!"
                     })
                 }
                 else {
