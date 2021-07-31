@@ -57,9 +57,9 @@ const Tag = () => {
         // console.log('delete', slug);
         removeTag(slug, token).then(data => {
             if (data.error) {
-                console.log(data.error);
+                setValues({ ...values, error: data.error, success: false });
             } else {
-                setValues({ ...values, error: false, success: false, name: '', removed: !removed, reload: !reload });
+                setValues({ ...values, error: false, success: false, name: '', removed: true, reload: !reload });
             }
         });
     };
@@ -71,7 +71,7 @@ const Tag = () => {
             if (data.error) {
                 setValues({ ...values, error: data.error, success: false });
             } else {
-                setValues({ ...values, error: false, success: false, name: '', removed: !removed, reload: !reload });
+                setValues({ ...values, error: false, success: true, name: '', reload: !reload });
             }
         });
     };
